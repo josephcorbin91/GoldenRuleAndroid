@@ -1,4 +1,4 @@
-package in.tvac.akshaye.lapitchat;
+package in.tvac.akshaye.lapitchat.Models;
 
 /**
  * Created by AkshayeJH on 13/07/17.

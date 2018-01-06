@@ -1,4 +1,4 @@
-package in.tvac.akshaye.lapitchat;
+package in.tvac.akshaye.lapitchat.Appilcations;
 
 import android.app.Application;
 
@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
  * Created by AkshayeJH on 01/07/17.
  */
 
-public class LapitChat extends Application{
+public class LapitChatApplication extends Application{
 
     private DatabaseReference mUserDatabase;
     private FirebaseAuth mAuth;

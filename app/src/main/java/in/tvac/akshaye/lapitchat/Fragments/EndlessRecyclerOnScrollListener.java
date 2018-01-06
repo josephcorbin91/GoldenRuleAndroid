@@ -1,4 +1,4 @@
-package in.tvac.akshaye.lapitchat;
+package in.tvac.akshaye.lapitchat.Fragments;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

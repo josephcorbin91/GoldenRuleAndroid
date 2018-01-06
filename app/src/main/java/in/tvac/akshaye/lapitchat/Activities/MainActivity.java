@@ -1,4 +1,4 @@
-package in.tvac.akshaye.lapitchat;
+package in.tvac.akshaye.lapitchat.Activities;
 
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
@@ -14,6 +14,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
+
+import in.tvac.akshaye.lapitchat.Adapters.SectionsPagerAdapter;
+import in.tvac.akshaye.lapitchat.R;
 
 public class MainActivity extends AppCompatActivity {
 

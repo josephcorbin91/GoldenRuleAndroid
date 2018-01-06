@@ -1,4 +1,4 @@
-package in.tvac.akshaye.lapitchat;
+package in.tvac.akshaye.lapitchat.Appilcations;
 
 import android.app.Application;
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.content.Context;
  * Created by AkshayeJH on 16/07/17.
  */
 
-public class GetTimeAgo extends Application{
+public class GetTimeAgoApplication extends Application{
 
     /*
  * Copyright 2012 Google Inc.

@@ -1,8 +1,5 @@
-package in.tvac.akshaye.lapitchat;
+package in.tvac.akshaye.lapitchat.Activities;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.os.Message;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +17,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import in.tvac.akshaye.lapitchat.Models.Messages;
+import in.tvac.akshaye.lapitchat.R;
 
 /**
  * Created by AkshayeJH on 24/07/17.

@@ -1,13 +1,11 @@
-package in.tvac.akshaye.lapitchat;
+package in.tvac.akshaye.lapitchat.Fragments;
 
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,6 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import in.tvac.akshaye.lapitchat.Activities.ChatActivity;
+import in.tvac.akshaye.lapitchat.Models.Conv;
+import in.tvac.akshaye.lapitchat.R;
 
 
 /**
