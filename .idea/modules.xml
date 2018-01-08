@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Lapit---Android-Firebase-Chat-App.iml" filepath="$PROJECT_DIR$/Lapit---Android-Firebase-Chat-App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GoldenRuleAndroidFinal.iml" filepath="$PROJECT_DIR$/GoldenRuleAndroidFinal.iml" />
       <module fileurl="file://C:\Lapit---Android-Firebase-Chat-App\LapitChat.iml" filepath="C:\Lapit---Android-Firebase-Chat-App\LapitChat.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Lapit---Android-Firebase-Chat-App\app\app.iml" filepath="C:\Lapit---Android-Firebase-Chat-App\app\app.iml" />
     </modules>
   </component>
 </project>

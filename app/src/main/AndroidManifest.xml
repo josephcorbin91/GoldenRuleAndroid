@@ -1,57 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="in.tvac.akshaye.lapitchat">
-
+    package="jco.goldenrule">
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.QUICKBOOT_POWERON"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".Appilcations.LapitChatApplication"
+        android:name="jco.goldenrule.Appilcations.LapitChatApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name=".FirebaseMessaging.FirebaseMessagingService">
+
+
+        <receiver android:name="jco.goldenrule.BroadcastReceivers.AlarmReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.permission.QUICKBOOT_POWERON"/>
+
+            </intent-filter>
+
+        </receiver>
+
+
+
+        <service android:name="jco.goldenrule.FirebaseMessaging.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name="jco.goldenrule.Activities.ChatActivities.MainActivity">
+
+        </activity>
+        <activity android:name="jco.goldenrule.Activities.StartActivity" />
+        <activity
+            android:name="jco.goldenrule.Activities.RegisterActivity"
+            android:parentActivityName="jco.goldenrule.Activities.StartActivity" />
+        <activity
+            android:name="jco.goldenrule.Activities.LoginActivity"
+            android:parentActivityName="jco.goldenrule.Activities.StartActivity">
+
+        </activity>
+
+        <activity
+            android:name="jco.goldenrule.Activities.SplashActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.StartActivity" />
+
+
+        <activity android:name="jco.goldenrule.Activities.SettingsActivity" />
         <activity
-            android:name=".Activities.RegisterActivity"
-            android:parentActivityName=".Activities.StartActivity" />
+            android:name="jco.goldenrule.Activities.ChatActivities.StatusActivity"
+            android:parentActivityName="jco.goldenrule.Activities.SettingsActivity" />
+
         <activity
-            android:name=".Activities.LoginActivity"
-            android:parentActivityName=".Activities.StartActivity" />
-        <activity android:name=".Activities.SettingsActivity" />
-        <activity
-            android:name=".Activities.StatusActivity"
-            android:parentActivityName=".Activities.SettingsActivity" />
+            android:name="jco.goldenrule.Activities.HomeActivity" />
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
         <activity
-            android:name=".Activities.UsersActivity"
-            android:parentActivityName=".Activities.MainActivity" />
-        <activity android:name=".Activities.ProfileActivity">
+            android:name="jco.goldenrule.Activities.ChatActivities.UsersActivity"
+            android:parentActivityName="jco.goldenrule.Activities.ChatActivities.MainActivity" />
+        <activity android:name="jco.goldenrule.Activities.ChatActivities.ProfileActivity">
             <intent-filter>
                 <action android:name="in.tvac.akshaye.lapitchat_TARGET_NOTIFICATION" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.ChatActivity"
-            android:parentActivityName=".Activities.MainActivity"></activity>
+        <activity android:name="jco.goldenrule.Activities.ChatActivities.ChatActivity"
+            android:parentActivityName="jco.goldenrule.Activities.ChatActivities.MainActivity"></activity>
     </application>
 
 </manifest>
