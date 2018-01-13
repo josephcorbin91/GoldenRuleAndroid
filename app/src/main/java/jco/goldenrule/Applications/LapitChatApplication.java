@@ -1,4 +1,4 @@
-package jco.goldenrule.Appilcations;
+package jco.goldenrule.Applications;
 
 import android.app.Application;
 

@@ -4,12 +4,16 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -29,16 +33,58 @@ public class HomeActivity extends AppCompatActivity {
     private Context mContext;
     private AlarmManager alarmManager;
     private PendingIntent alarmIntent;
-    private FloatingActionButton mSettingButton, mMessagingButton, mLocationButton;
+    private ImageButton mSettingButton, mMessagingButton, mLocationButton,mInfoButton;
 
     private LinearLayout backgroundLayout;
 
+
+    protected void setStatusBarTranslucent(boolean makeTranslucent){
+        if(makeTranslucent){
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+        else{
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        this.backgroundLayout= (LinearLayout)findViewById(R.id.main_screen);
         setContentView(R.layout.activity_home);
+        this.backgroundLayout= (LinearLayout)findViewById(R.id.main_screen);
+
+        /*
+        this.mSettingButton = (ImageButton)findViewById(R.id.settingButton);
+        this.mMessagingButton = (ImageButton)findViewById(R.id.messageButton);
+        this.mLocationButton = (ImageButton)findViewById(R.id.locatorButton);
+        this.mInfoButton = (ImageButton)findViewById(R.id.infoButton);
+
+        mSettingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Settings clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        mMessagingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Messaging clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        mInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Info clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        mLocationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "Location clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+*/
         mContext=this;
         backgroundLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +95,8 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
+        setStatusBarTranslucent(true);
 
 
 
@@ -106,7 +154,9 @@ private void setupAlarm(){
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY,14);
+        calendar.set(Calendar.HOUR_OF_DAY,12);
+        calendar.set(Calendar.MINUTE,34);
+        System.out.println("REPRES " +calendar);
         Intent intent=new Intent(this,AlarmReceiver.class);
         alarmIntent = PendingIntent.getBroadcast(this,0,intent,0);
     //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,alarmIntent);

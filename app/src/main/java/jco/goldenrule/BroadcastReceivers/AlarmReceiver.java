@@ -21,18 +21,26 @@ public class AlarmReceiver extends BroadcastReceiver {
         if(intent.getAction()!=null) {
             if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
                 Toast.makeText(context, "Boot completed", Toast.LENGTH_LONG).show();
+                Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(1000);
+                System.out.println("Boot recieved");
+
+
 
             }
             if (intent.getAction().equals("android.intent.action.QUICKBOOT_POWERON")) {
                 Toast.makeText(context, "Quickboot power on", Toast.LENGTH_LONG).show();
 
+                Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(1000);
+                System.out.println("Quicboot recieved");
+
+
+
             }
         }
 
 
-
-        Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(1000);
 
 
           Intent alarmIntent = new Intent(context,AlarmReceiver.class);

@@ -40,7 +40,7 @@ import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import jco.goldenrule.Appilcations.GetTimeAgoApplication;
+import jco.goldenrule.Applications.GetTimeAgoApplication;
 import jco.goldenrule.Models.Messages;
 import jco.goldenrule.R;
 

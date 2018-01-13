@@ -136,7 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                                 startActivity(mainIntent);
-                                finish();
+
 
                             }
 
