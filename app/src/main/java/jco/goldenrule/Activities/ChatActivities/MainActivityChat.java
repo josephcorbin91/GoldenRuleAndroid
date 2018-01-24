@@ -16,11 +16,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 
 import jco.goldenrule.Activities.SettingsActivity;
-import jco.goldenrule.Activities.StartActivity;
+import jco.goldenrule.Activities.LoginRegistrationActivities.StartActivity;
 import jco.goldenrule.Adapters.SectionsPagerAdapter;
 import jco.goldenrule.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityChat extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private Toolbar mToolbar;
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendToStart() {
 
-        Intent startIntent = new Intent(MainActivity.this, StartActivity.class);
+        Intent startIntent = new Intent(MainActivityChat.this, StartActivity.class);
         startActivity(startIntent);
         finish();
 
@@ -133,14 +133,14 @@ public class MainActivity extends AppCompatActivity {
 
         if(item.getItemId() == R.id.main_settings_btn){
 
-            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            Intent settingsIntent = new Intent(MainActivityChat.this, SettingsActivity.class);
             startActivity(settingsIntent);
 
         }
 
         if(item.getItemId() == R.id.main_all_btn){
 
-            Intent settingsIntent = new Intent(MainActivity.this, UsersActivity.class);
+            Intent settingsIntent = new Intent(MainActivityChat.this, UsersActivity.class);
             startActivity(settingsIntent);
 
         }

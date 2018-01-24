@@ -9,6 +9,8 @@ import android.os.SystemClock;
 import android.os.Vibrator;
 import android.widget.Toast;
 
+import jco.goldenrule.Activities.HomeActivity;
+
 
 /**
  * Created by jco on 12/18/2017.
@@ -18,36 +20,19 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if(intent.getAction()!=null) {
-            if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-                Toast.makeText(context, "Boot completed", Toast.LENGTH_LONG).show();
-                Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(1000);
-                System.out.println("Boot recieved");
-
-
-
-            }
-            if (intent.getAction().equals("android.intent.action.QUICKBOOT_POWERON")) {
-                Toast.makeText(context, "Quickboot power on", Toast.LENGTH_LONG).show();
-
-                Vibrator vibrator = (Vibrator)context.getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(1000);
-                System.out.println("Quicboot recieved");
-
-
-
-            }
-        }
 
 
 
 
-          Intent alarmIntent = new Intent(context,AlarmReceiver.class);
-          PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0,alarmIntent,0);
-          AlarmManager manager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-          manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,SystemClock.elapsedRealtime() + 60 * 1000, pendingIntent);
-          //Toast.makeText(context,"Alarm Set in boot completed", Toast.LENGTH_SHORT).show();
+
+
+
+        System.out.println("Alarm for Home activity");
+        Intent startHomeActivityIntent = new Intent(context, HomeActivity.class);
+        startHomeActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(startHomeActivityIntent);
+
+
 
 
 

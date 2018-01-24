@@ -10,9 +10,9 @@
     <application
         android:name="jco.goldenrule.Applications.LapitChatApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/launcher_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/launcher_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -27,6 +27,13 @@
         </receiver>
 
 
+        <receiver android:name="jco.goldenrule.BroadcastReceivers.BootCompletedReceiver">
+
+        </receiver>
+
+
+
+
 
         <service android:name="jco.goldenrule.FirebaseMessaging.FirebaseMessagingService">
             <intent-filter>
@@ -34,21 +41,26 @@
             </intent-filter>
         </service>
 
-        <activity android:name="jco.goldenrule.Activities.ChatActivities.MainActivity">
+        <activity android:name="jco.goldenrule.Activities.ChatActivities.MainActivityChat"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name="jco.goldenrule.Activities.StartActivity" />
+        <activity android:name="jco.goldenrule.Activities.LoginRegistrationActivities.StartActivity"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name="jco.goldenrule.Activities.RegisterActivity"
-            android:parentActivityName="jco.goldenrule.Activities.StartActivity" />
+            android:name="jco.goldenrule.Activities.LoginRegistrationActivities.RegisterActivity"
+            android:parentActivityName="jco.goldenrule.Activities.LoginRegistrationActivities.StartActivity"
+            android:screenOrientation="portrait"/>
         <activity
-            android:name="jco.goldenrule.Activities.LoginActivity"
-            android:parentActivityName="jco.goldenrule.Activities.StartActivity">
+            android:name="jco.goldenrule.Activities.LoginRegistrationActivities.LoginActivity"
+            android:parentActivityName="jco.goldenrule.Activities.LoginRegistrationActivities.StartActivity"
+            android:screenOrientation="portrait">
 
         </activity>
 
         <activity
-            android:name="jco.goldenrule.Activities.SplashActivity">
+            android:name="jco.goldenrule.Activities.LoginRegistrationActivities.SplashActivity"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,20 +70,26 @@
         </activity>
 
 
-        <activity android:name="jco.goldenrule.Activities.SettingsActivity" />
+        <activity android:name="jco.goldenrule.Activities.SettingsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="jco.goldenrule.Activities.ChatActivities.StatusActivity"
-            android:parentActivityName="jco.goldenrule.Activities.SettingsActivity" />
+            android:parentActivityName="jco.goldenrule.Activities.SettingsActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
-            android:name="jco.goldenrule.Activities.HomeActivity" />
+            android:name="jco.goldenrule.Activities.HomeActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" />
+            android:theme="@style/Base.Theme.AppCompat"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="jco.goldenrule.Activities.ChatActivities.UsersActivity"
-            android:parentActivityName="jco.goldenrule.Activities.ChatActivities.MainActivity" />
-        <activity android:name="jco.goldenrule.Activities.ChatActivities.ProfileActivity">
+            android:parentActivityName="jco.goldenrule.Activities.ChatActivities.MainActivityChat"
+            android:screenOrientation="portrait"/>
+        <activity android:name="jco.goldenrule.Activities.ChatActivities.ProfileActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="in.tvac.akshaye.lapitchat_TARGET_NOTIFICATION" />
 
@@ -79,7 +97,8 @@
             </intent-filter>
         </activity>
         <activity android:name="jco.goldenrule.Activities.ChatActivities.ChatActivity"
-            android:parentActivityName="jco.goldenrule.Activities.ChatActivities.MainActivity"></activity>
+            android:parentActivityName="jco.goldenrule.Activities.ChatActivities.MainActivityChat"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

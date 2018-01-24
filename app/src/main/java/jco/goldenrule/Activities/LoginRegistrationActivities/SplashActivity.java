@@ -1,5 +1,7 @@
-package jco.goldenrule.Activities;
+package jco.goldenrule.Activities.LoginRegistrationActivities;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +13,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
-import jco.goldenrule.Activities.ChatActivities.MainActivity;
+import com.wang.avi.AVLoadingIndicatorView;
+
+import java.util.Calendar;
+
+import jco.goldenrule.Activities.HomeActivity;
+import jco.goldenrule.BroadcastReceivers.AlarmReceiver;
 import jco.goldenrule.R;
 import jco.goldenrule.Utility.Constant;
 import jco.goldenrule.Utility.PreferenceClass;
@@ -21,6 +28,9 @@ public class SplashActivity extends AppCompatActivity {
     Context mContext;
     private Button mRegBtn;
     private Button mLoginBtn;
+    private AlarmManager alarmManager;
+    private PendingIntent alarmIntent;
+    private AVLoadingIndicatorView loadingSpinner;
 
 
 
@@ -33,11 +43,44 @@ public class SplashActivity extends AppCompatActivity {
         }
     }
 
+    private void setupAlarm(){
+        alarmManager = (AlarmManager)this.getSystemService(Context.ALARM_SERVICE);
+
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        /*
+        calendar.set(Calendar.HOUR,12);
+        calendar.set(Calendar.MINUTE,34);
+        */
+        calendar.add(Calendar.MINUTE,1);
+
+        Intent newIntent = new Intent(this,AlarmReceiver.class);
+        Intent intent=new Intent(this,AlarmReceiver.class);
+        alarmIntent = PendingIntent.getBroadcast(this,0,intent,0);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,alarmIntent);
+        //alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+10*1000,alarmIntent);
+        System.out.println("Alarm set in "+calendar.getTime());
+
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        setupAlarm();
+        loadingSpinner =(AVLoadingIndicatorView)findViewById(R.id.loadingSpinner);
+        loadingSpinner.smoothToShow();
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                loadingSpinner.smoothToHide();
+            }
+        },3000);
 
 
         mContext = this;
@@ -76,7 +119,7 @@ public class SplashActivity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
                 }
@@ -92,12 +135,14 @@ public class SplashActivity extends AppCompatActivity {
                     fadeInAnimation.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
+                            //loadingSpinner.setVisibility(View.VISIBLE);
 
                         }
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
 
+                            //loadingSpinner.setVisibility(View.INVISIBLE);
                             mLoginBtn.setVisibility(View.VISIBLE);
                             mRegBtn.setVisibility(View.VISIBLE);
 
@@ -108,13 +153,14 @@ public class SplashActivity extends AppCompatActivity {
 
                         }
                     });
+
                     mLoginBtn.startAnimation(fadeInAnimation);
                     mRegBtn.startAnimation(fadeInAnimation);
 
 
 
                 }
-            }, Constant.AppConstant.SPLASH_TIME_OUT);
+            }, 4000);
         }
 
 

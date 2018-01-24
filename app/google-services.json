@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:290541147280:android:b3961a267789e117",
+        "mobilesdk_app_id": "1:290541147280:android:37e51d60a5aed865",
         "android_client_info": {
-          "package_name": "jco.chat"
+          "package_name": "com.jco.android.firebase.chat"
         }
       },
       "oauth_client": [

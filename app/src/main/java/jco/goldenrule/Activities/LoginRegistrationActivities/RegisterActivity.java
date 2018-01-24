@@ -1,4 +1,4 @@
-package jco.goldenrule.Activities;
+package jco.goldenrule.Activities.LoginRegistrationActivities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -23,8 +23,10 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.util.HashMap;
 
-import jco.goldenrule.Activities.ChatActivities.MainActivity;
+import jco.goldenrule.Activities.HomeActivity;
 import jco.goldenrule.R;
+import jco.goldenrule.Utility.Constant;
+import jco.goldenrule.Utility.PreferenceClass;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -130,6 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
                             if(task.isSuccessful()){
 
                                 mRegProgress.dismiss();
+                                PreferenceClass.setBooleanPreference(getApplicationContext(), Constant.User.IS_LOGIN,true);
 
                                 Intent mainIntent = new Intent(RegisterActivity.this, HomeActivity.class);
                                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

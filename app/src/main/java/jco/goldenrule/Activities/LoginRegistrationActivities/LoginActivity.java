@@ -1,4 +1,4 @@
-package jco.goldenrule.Activities;
+package jco.goldenrule.Activities.LoginRegistrationActivities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,8 +20,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
-import jco.goldenrule.R;
 
+import jco.goldenrule.Activities.HomeActivity;
+import jco.goldenrule.R;
+import jco.goldenrule.Utility.Constant;
+import jco.goldenrule.Utility.PreferenceClass;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -106,6 +109,7 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
 
+                            PreferenceClass.setBooleanPreference(getApplicationContext(), Constant.User.IS_LOGIN,true);
                             Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(mainIntent);

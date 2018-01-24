@@ -1,4 +1,4 @@
-package jco.goldenrule.Activities;
+package jco.goldenrule.Activities.LoginRegistrationActivities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
