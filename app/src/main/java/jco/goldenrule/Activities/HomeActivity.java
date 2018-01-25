@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import jco.goldenrule.Activities.ChatActivities.ChatActivity;
 import jco.goldenrule.Activities.ChatActivities.MainActivityChat;
 import jco.goldenrule.R;
@@ -44,6 +46,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         this.backgroundLayout= (LinearLayout)findViewById(R.id.main_screen);
+
+        System.out.println("Current user in home activity"+ FirebaseAuth.getInstance().getCurrentUser());
 
 /*
 
@@ -142,6 +146,14 @@ public class HomeActivity extends AppCompatActivity {
 */
 
 
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
 
     }
 }

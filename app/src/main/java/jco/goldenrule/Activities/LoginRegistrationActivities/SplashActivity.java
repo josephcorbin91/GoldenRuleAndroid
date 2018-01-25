@@ -13,6 +13,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ServerValue;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.Calendar;
@@ -74,6 +76,7 @@ public class SplashActivity extends AppCompatActivity {
         loadingSpinner =(AVLoadingIndicatorView)findViewById(R.id.loadingSpinner);
         loadingSpinner.smoothToShow();
 
+        System.out.println("Current user " +FirebaseAuth.getInstance().getCurrentUser());
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -113,8 +116,8 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         });
+        if(FirebaseAuth.getInstance().getCurrentUser()!=null){
 
-        if(PreferenceClass.getBooleanPreferences(mContext, Constant.User.IS_LOGIN)){
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -164,5 +167,12 @@ public class SplashActivity extends AppCompatActivity {
         }
 
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 }

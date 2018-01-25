@@ -109,7 +109,6 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Void aVoid) {
 
-                            PreferenceClass.setBooleanPreference(getApplicationContext(), Constant.User.IS_LOGIN,true);
                             Intent mainIntent = new Intent(LoginActivity.this, HomeActivity.class);
                             mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(mainIntent);

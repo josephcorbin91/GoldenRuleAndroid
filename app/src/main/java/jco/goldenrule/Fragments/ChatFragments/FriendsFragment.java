@@ -1,11 +1,12 @@
-package jco.goldenrule.Fragments;
+package jco.goldenrule.Fragments.ChatFragments;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,30 +17,28 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import jco.goldenrule.Activities.ChatActivities.ChatActivity;
-import jco.goldenrule.Models.Conv;
+import jco.goldenrule.Models.Friends;
+import jco.goldenrule.Activities.ChatActivities.ProfileActivity;
 import jco.goldenrule.R;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChatsFragment extends Fragment {
+public class FriendsFragment extends Fragment {
 
-    private RecyclerView mConvList;
+    private RecyclerView mFriendsList;
 
-    private DatabaseReference mConvDatabase;
-    private DatabaseReference mMessageDatabase;
+    private DatabaseReference mFriendsDatabase;
     private DatabaseReference mUsersDatabase;
 
     private FirebaseAuth mAuth;
@@ -49,7 +48,7 @@ public class ChatsFragment extends Fragment {
     private View mMainView;
 
 
-    public ChatsFragment() {
+    public FriendsFragment() {
         // Required empty public constructor
     }
 
@@ -58,27 +57,21 @@ public class ChatsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        mMainView = inflater.inflate(R.layout.fragment_chats, container, false);
+        mMainView = inflater.inflate(R.layout.fragment_friends, container, false);
 
-        mConvList = (RecyclerView) mMainView.findViewById(R.id.conv_list);
+        mFriendsList = (RecyclerView) mMainView.findViewById(R.id.friends_list);
         mAuth = FirebaseAuth.getInstance();
 
         mCurrent_user_id = mAuth.getCurrentUser().getUid();
 
-        mConvDatabase = FirebaseDatabase.getInstance().getReference().child("Chat").child(mCurrent_user_id);
-
-        mConvDatabase.keepSynced(true);
+        mFriendsDatabase = FirebaseDatabase.getInstance().getReference().child("Friends").child(mCurrent_user_id);
+        mFriendsDatabase.keepSynced(true);
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
-        mMessageDatabase = FirebaseDatabase.getInstance().getReference().child("messages").child(mCurrent_user_id);
         mUsersDatabase.keepSynced(true);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);
 
-        mConvList.setHasFixedSize(true);
-        mConvList.setLayoutManager(linearLayoutManager);
-
+        mFriendsList.setHasFixedSize(true);
+        mFriendsList.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Inflate the layout for this fragment
         return mMainView;
@@ -89,53 +82,21 @@ public class ChatsFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        Query conversationQuery = mConvDatabase.orderByChild("timestamp");
+        FirebaseRecyclerAdapter<Friends, FriendsViewHolder> friendsRecyclerViewAdapter = new FirebaseRecyclerAdapter<Friends, FriendsViewHolder>(
 
-        FirebaseRecyclerAdapter<Conv, ConvViewHolder> firebaseConvAdapter = new FirebaseRecyclerAdapter<Conv, ConvViewHolder>(
-                Conv.class,
+                Friends.class,
                 R.layout.users_single_layout,
-                ConvViewHolder.class,
-                conversationQuery
+                FriendsViewHolder.class,
+                mFriendsDatabase
+
+
         ) {
             @Override
-            protected void populateViewHolder(final ConvViewHolder convViewHolder, final Conv conv, int i) {
+            protected void populateViewHolder(final FriendsViewHolder friendsViewHolder, Friends friends, int i) {
 
-
+                friendsViewHolder.setDate(friends.getDate());
 
                 final String list_user_id = getRef(i).getKey();
-
-                Query lastMessageQuery = mMessageDatabase.child(list_user_id).limitToLast(1);
-
-                lastMessageQuery.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                        String data = dataSnapshot.child("message").getValue().toString();
-                        convViewHolder.setMessage(data, conv.isSeen());
-
-                    }
-
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
 
                 mUsersDatabase.child(list_user_id).addValueEventListener(new ValueEventListener() {
                     @Override
@@ -147,22 +108,48 @@ public class ChatsFragment extends Fragment {
                         if(dataSnapshot.hasChild("online")) {
 
                             String userOnline = dataSnapshot.child("online").getValue().toString();
-                            convViewHolder.setUserOnline(userOnline);
+                            friendsViewHolder.setUserOnline(userOnline);
 
                         }
 
-                        convViewHolder.setName(userName);
-                        convViewHolder.setUserImage(userThumb, getContext());
+                        friendsViewHolder.setName(userName);
+                        friendsViewHolder.setUserImage(userThumb, getContext());
 
-                        convViewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                        friendsViewHolder.mView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
 
+                                CharSequence options[] = new CharSequence[]{"Open Profile", "Send message"};
 
-                                Intent chatIntent = new Intent(getContext(), ChatActivity.class);
-                                chatIntent.putExtra("user_id", list_user_id);
-                                chatIntent.putExtra("user_name", userName);
-                                startActivity(chatIntent);
+                                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+                                builder.setTitle("Select Options");
+                                builder.setItems(options, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        //Click Event for each item.
+                                        if(i == 0){
+
+                                            Intent profileIntent = new Intent(getContext(), ProfileActivity.class);
+                                            profileIntent.putExtra("user_id", list_user_id);
+                                            startActivity(profileIntent);
+
+                                        }
+
+                                        if(i == 1){
+
+                                            Intent chatIntent = new Intent(getContext(), ChatActivity.class);
+                                            chatIntent.putExtra("user_id", list_user_id);
+                                            chatIntent.putExtra("user_name", userName);
+                                            startActivity(chatIntent);
+
+                                        }
+
+                                    }
+                                });
+
+                                builder.show();
 
                             }
                         });
@@ -179,31 +166,27 @@ public class ChatsFragment extends Fragment {
             }
         };
 
-        mConvList.setAdapter(firebaseConvAdapter);
+        mFriendsList.setAdapter(friendsRecyclerViewAdapter);
+
 
     }
 
-    public static class ConvViewHolder extends RecyclerView.ViewHolder {
+
+    public static class FriendsViewHolder extends RecyclerView.ViewHolder {
 
         View mView;
 
-        public ConvViewHolder(View itemView) {
+        public FriendsViewHolder(View itemView) {
             super(itemView);
 
             mView = itemView;
 
         }
 
-        public void setMessage(String message, boolean isSeen){
+        public void setDate(String date){
 
             TextView userStatusView = (TextView) mView.findViewById(R.id.user_single_status);
-            userStatusView.setText(message);
-
-            if(!isSeen){
-                userStatusView.setTypeface(userStatusView.getTypeface(), Typeface.BOLD);
-            } else {
-                userStatusView.setTypeface(userStatusView.getTypeface(), Typeface.NORMAL);
-            }
+            userStatusView.setText(date);
 
         }
 
@@ -239,7 +222,6 @@ public class ChatsFragment extends Fragment {
 
 
     }
-
 
 
 }

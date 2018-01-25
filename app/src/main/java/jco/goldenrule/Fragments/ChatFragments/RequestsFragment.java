@@ -1,4 +1,4 @@
-package jco.goldenrule.Fragments;
+package jco.goldenrule.Fragments.ChatFragments;
 
 
 import android.os.Bundle;

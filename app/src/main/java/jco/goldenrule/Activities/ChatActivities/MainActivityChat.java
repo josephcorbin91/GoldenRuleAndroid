@@ -33,6 +33,12 @@ public class MainActivityChat extends AppCompatActivity {
     private TabLayout mTabLayout;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -42,6 +48,10 @@ public class MainActivityChat extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.main_page_toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle("Lapit Chat");
+
+        System.out.println("Current user in main activity chat "+mAuth.getCurrentUser());
+        //System.out.println("DISPLAY name "+mAuth.getCurrentUser().getDisplayName());
+        //System.out.println("DISPLAY uid "+mAuth.getCurrentUser().getUid());
 
         if (mAuth.getCurrentUser() != null) {
 
@@ -127,7 +137,7 @@ public class MainActivityChat extends AppCompatActivity {
             mUserRef.child("online").setValue(ServerValue.TIMESTAMP);
 
             FirebaseAuth.getInstance().signOut();
-            sendToStart();
+            finishAffinity();
 
         }
 
@@ -147,4 +157,7 @@ public class MainActivityChat extends AppCompatActivity {
 
         return true;
     }
+
+
+
 }

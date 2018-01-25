@@ -4,10 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import jco.goldenrule.Fragments.ChatsFragment;
-import jco.goldenrule.Fragments.FriendsFragment;
-import jco.goldenrule.Fragments.RequestsFragment;
-import jco.goldenrule.Fragments.UserFragment;
+import jco.goldenrule.Fragments.ChatFragments.ChatsFragment;
+import jco.goldenrule.Fragments.ChatFragments.FriendsFragment;
+import jco.goldenrule.Fragments.ChatFragments.RequestsFragment;
 
 /**
  * Created by AkshayeJH on 11/06/17.
@@ -35,9 +34,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter{
             case 2:
                 FriendsFragment friendsFragment = new FriendsFragment();
                 return friendsFragment;
-            case 3:
-                UserFragment usersFragment = new UserFragment();
-                return usersFragment;
+
 
             default:
                 return  null;
@@ -47,7 +44,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter{
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 
     public CharSequence getPageTitle(int position){
