@@ -35,9 +35,14 @@
 
 
 
-        <service android:name="jco.goldenrule.FirebaseMessaging.FirebaseMessagingService">
+        <service android:name="jco.goldenrule.Services.Firebase.FirebaseMessagingService">
+        <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+    </service>
+        <service android:name="jco.goldenrule.Services.Firebase.FirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
 

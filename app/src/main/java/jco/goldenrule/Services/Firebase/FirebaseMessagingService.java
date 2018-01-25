@@ -1,4 +1,4 @@
-package jco.goldenrule.FirebaseMessaging;
+package jco.goldenrule.Services.Firebase;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;

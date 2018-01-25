@@ -29,6 +29,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import jco.goldenrule.Activities.ChatActivities.ChatActivity;
 import jco.goldenrule.Models.Conv;
 import jco.goldenrule.R;
+import me.leolin.shortcutbadger.ShortcutBadger;
 
 
 /**
@@ -41,6 +42,7 @@ public class ChatsFragment extends Fragment {
     private DatabaseReference mConvDatabase;
     private DatabaseReference mMessageDatabase;
     private DatabaseReference mUsersDatabase;
+    public static int numberOfUnseenMessage;
 
     private FirebaseAuth mAuth;
 
@@ -61,6 +63,8 @@ public class ChatsFragment extends Fragment {
         mMainView = inflater.inflate(R.layout.fragment_chats, container, false);
 
         mConvList = (RecyclerView) mMainView.findViewById(R.id.conv_list);
+
+
         mAuth = FirebaseAuth.getInstance();
 
         mCurrent_user_id = mAuth.getCurrentUser().getUid();
@@ -84,6 +88,10 @@ public class ChatsFragment extends Fragment {
         return mMainView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
     @Override
     public void onStart() {
@@ -196,10 +204,12 @@ public class ChatsFragment extends Fragment {
 
         public void setMessage(String message, boolean isSeen){
 
+
             TextView userStatusView = (TextView) mView.findViewById(R.id.user_single_status);
             userStatusView.setText(message);
 
             if(!isSeen){
+
                 userStatusView.setTypeface(userStatusView.getTypeface(), Typeface.BOLD);
             } else {
                 userStatusView.setTypeface(userStatusView.getTypeface(), Typeface.NORMAL);
