@@ -28,6 +28,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'org.litepal.android:core:1.6.0'
+    compile 'com.firebase:geofire-android:2.2.0'
     compile 'com.daimajia.androidanimations:library:2.2@aar'
     compile 'com.wang.avi:library:2.1.3'
 
