@@ -54,6 +54,13 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.google.firebase:firebase-messaging:10.2.0'
+
+    // The following dependencies are not required to use the Firebase UI library.
+    // They are used to make some aspects of the demo app implementation simpler for
+    // demonstrative purposes, and you may find them useful in your own apps; YMMV.
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
 }
 
 
