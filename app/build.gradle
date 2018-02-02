@@ -55,13 +55,53 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile 'com.google.firebase:firebase-messaging:10.2.0'
 
+
+
+    //Firebase auth from demo
+    implementation "com.google.firebase:firebase-core:10.2.0"
+    implementation "com.android.support:design:25.3.1"
+    implementation 'com.android.support:multidex:1.0.2'
+
+
+
+    //Firebase auth
+    implementation "com.android.support:design:25.3.1"
+    implementation "com.android.support:customtabs:25.3.1"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta3'
+
+
+
+
+    /*TODO must add
+    implementation "android.arch.lifecycle:extensions:$architectureVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$architectureVersion"
+*/
+
+    compile 'com.facebook.android:facebook-login:4.28.0'
+    api "com.google.firebase:firebase-auth:10.2.0"
+    api "com.google.android.gms:play-services-auth:10.2.0"
+
+    // Needed to override Facebook
+    implementation "com.android.support:cardview-v7:25.3.1"
+    implementation "com.android.support:customtabs:25.3.1"
+    compile("com.twitter.sdk.android:twitter-core:3.1.1@aar") { transitive = true }
+
+
+
     // The following dependencies are not required to use the Firebase UI library.
     // They are used to make some aspects of the demo app implementation simpler for
     // demonstrative purposes, and you may find them useful in your own apps; YMMV.
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
 
 }
+
 
 
 
