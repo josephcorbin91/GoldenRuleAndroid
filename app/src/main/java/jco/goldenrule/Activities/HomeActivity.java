@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,16 +46,15 @@ public class HomeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_home);
 
-        this.backgroundLayout= (LinearLayout)findViewById(R.id.main_screen);
 
         System.out.println("Current user in home activity"+ FirebaseAuth.getInstance().getCurrentUser());
 
-/*
 
         this.mSettingButton = (ImageButton)findViewById(R.id.settingButton);
         this.mMessagingButton = (ImageButton)findViewById(R.id.messageButton);
         this.mLocationButton = (ImageButton)findViewById(R.id.locatorButton);
         this.mInfoButton = (ImageButton)findViewById(R.id.infoButton);
+        this.mContext=getApplicationContext();
 
         mSettingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +66,9 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "Messaging clicked", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(HomeActivity.this, MainActivityChat.class));
+
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         mInfoButton.setOnClickListener(new View.OnClickListener() {
@@ -81,18 +84,6 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-*/
-        mContext=this;
-
-        backgroundLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, MainActivityChat.class));
-
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-            }
-        });
 
 
         setStatusBarTranslucent(true);

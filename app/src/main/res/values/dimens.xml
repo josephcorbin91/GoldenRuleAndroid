@@ -6,6 +6,6 @@
   -->
 
 <resources>
-    <dimen name="home_page_button_size">30dp</dimen>
+    <dimen name="home_page_button_size">100dp</dimen>
 
 </resources>
