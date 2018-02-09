@@ -5,7 +5,7 @@
     android:id="@+id/main_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home_screen_background_copy"
+    android:background="@drawable/home_page_golden_rule"
     >
 
 
