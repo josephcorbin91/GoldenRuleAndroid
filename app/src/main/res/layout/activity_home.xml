@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
-        android:layout_marginBottom="50dp"
-        android:weightSum="4">
+        android:layout_marginBottom="20dp"
+        android:weightSum="3">
 
 
         <ImageButton
@@ -37,25 +37,7 @@
             android:scaleType="centerInside"
             android:src="@drawable/settings" />
 
-        <ImageButton
-            android:id="@+id/locatorButton"
-            android:layout_width="@dimen/home_page_button_size"
-            android:layout_height="@dimen/home_page_button_size"
-            android:layout_weight="1"
 
-            android:background="@android:color/transparent"
-            android:scaleType="centerInside"
-            android:src="@drawable/locater" />
-
-        <ImageButton
-            android:id="@+id/messageButton"
-            android:layout_width="@dimen/home_page_button_size"
-            android:layout_height="@dimen/home_page_button_size"
-            android:layout_weight="1"
-
-            android:background="@android:color/transparent"
-            android:scaleType="centerInside"
-            android:src="@drawable/messages" />
 
 
     </LinearLayout>

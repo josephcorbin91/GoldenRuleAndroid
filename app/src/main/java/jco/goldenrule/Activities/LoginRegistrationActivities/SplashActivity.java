@@ -28,8 +28,6 @@ import jco.goldenrule.Utility.PreferenceClass;
 
 public class SplashActivity extends AppCompatActivity {
     Context mContext;
-    private Button mRegBtn;
-    private Button mLoginBtn;
     private AlarmManager alarmManager;
     private PendingIntent alarmIntent;
     private AVLoadingIndicatorView loadingSpinner;
@@ -76,7 +74,6 @@ public class SplashActivity extends AppCompatActivity {
         loadingSpinner =(AVLoadingIndicatorView)findViewById(R.id.loadingSpinner);
         loadingSpinner.smoothToShow();
 
-        System.out.println("Current user " +FirebaseAuth.getInstance().getCurrentUser());
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -89,33 +86,7 @@ public class SplashActivity extends AppCompatActivity {
         mContext = this;
         setStatusBarTranslucent(true);
 
-        mRegBtn = (Button) findViewById(R.id.start_reg_btn);
-        mLoginBtn = (Button) findViewById(R.id.start_login_btn);
 
-        mRegBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent reg_intent = new Intent(SplashActivity.this, RegisterActivity.class);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-                startActivity(reg_intent);
-
-            }
-        });
-
-        mLoginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent login_intent = new Intent(SplashActivity.this, LoginActivity.class);
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-
-                startActivity(login_intent);
-
-            }
-        });
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
 
 
@@ -127,44 +98,8 @@ public class SplashActivity extends AppCompatActivity {
 
                 }
             },Constant.AppConstant.SPLASH_TIME_OUT);
-           }else{
-            new Handler().postDelayed(new Runnable() {
+           }
 
-                @Override
-                public void run() {
-
-
-                    Animation fadeInAnimation = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
-                    fadeInAnimation.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-                            //loadingSpinner.setVisibility(View.VISIBLE);
-
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-
-                            //loadingSpinner.setVisibility(View.INVISIBLE);
-                            mLoginBtn.setVisibility(View.VISIBLE);
-                            mRegBtn.setVisibility(View.VISIBLE);
-
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-
-                        }
-                    });
-
-                    mLoginBtn.startAnimation(fadeInAnimation);
-                    mRegBtn.startAnimation(fadeInAnimation);
-
-
-
-                }
-            }, 4000);
-        }
 
 
     }

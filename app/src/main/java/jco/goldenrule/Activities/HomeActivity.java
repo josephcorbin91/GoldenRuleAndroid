@@ -27,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     private Context mContext;
     private AlarmManager alarmManager;
     private PendingIntent alarmIntent;
-    private ImageButton mSettingButton, mMessagingButton, mLocationButton,mInfoButton;
+    private ImageButton mSettingButton,mInfoButton;
 
     private LinearLayout backgroundLayout;
 
@@ -51,8 +51,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
         this.mSettingButton = (ImageButton)findViewById(R.id.settingButton);
-        this.mMessagingButton = (ImageButton)findViewById(R.id.messageButton);
-        this.mLocationButton = (ImageButton)findViewById(R.id.locatorButton);
         this.mInfoButton = (ImageButton)findViewById(R.id.infoButton);
         this.mContext=getApplicationContext();
 
@@ -66,31 +64,12 @@ public class HomeActivity extends AppCompatActivity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
-        mMessagingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "Messaging clicked", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(HomeActivity.this, MainActivityChat.class));
-
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }
-        });
         mInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "Info clicked", Toast.LENGTH_SHORT).show();
 
                 startActivity(new Intent(HomeActivity.this, InfoActivity.class));
-
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            }
-        });
-        mLocationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "Location clicked", Toast.LENGTH_SHORT).show();
-
-                startActivity(new Intent(HomeActivity.this, LocatorActivity.class));
 
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }

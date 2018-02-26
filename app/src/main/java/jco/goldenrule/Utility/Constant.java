@@ -8,7 +8,7 @@ public class Constant {
 
 
     public static class AppConstant{
-        public static final int SPLASH_TIME_OUT =2500;
+        public static final int SPLASH_TIME_OUT =3500;
         public static final int LOGIN_REGISTRATION_TIME_OUT = 4000;
     }
 

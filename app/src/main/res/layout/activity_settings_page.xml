@@ -4,16 +4,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_screen"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/settings_image"
-    />
+    android:background="@drawable/background_settings"
+    >
 
-<!--
-    android:background="#F5EBEC"
+
 
         <RelativeLayout
+            android:layout_marginTop="400dp"
             android:orientation="horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -37,6 +40,9 @@
 
 
         <RelativeLayout
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -64,15 +70,12 @@
 
 
 
-        <ImageButton
-            android:layout_alignParentBottom="true"
+        <ImageView
             android:id="@+id/infoButton"
-            android:layout_width="@dimen/home_page_button_size"
-            android:layout_centerHorizontal="true"
-            android:layout_height="@dimen/home_page_button_size"
-            android:background="@android:color/transparent"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="@dimen/settings_page_button_size"
+            android:layout_height="@dimen/settings_page_button_size"
             android:scaleType="centerInside"
-            android:src="@drawable/info" />
-
-
--->
+            android:src="@drawable/settings_back_image" />
+</LinearLayout>
