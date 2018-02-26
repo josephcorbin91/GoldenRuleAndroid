@@ -60,6 +60,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "Settings clicked", Toast.LENGTH_SHORT).show();
+
+                startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
+
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         mMessagingButton.setOnClickListener(new View.OnClickListener() {
@@ -75,12 +79,20 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "Info clicked", Toast.LENGTH_SHORT).show();
+
+                startActivity(new Intent(HomeActivity.this, InfoActivity.class));
+
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         mLocationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(mContext, "Location clicked", Toast.LENGTH_SHORT).show();
+
+                startActivity(new Intent(HomeActivity.this, LocatorActivity.class));
+
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 

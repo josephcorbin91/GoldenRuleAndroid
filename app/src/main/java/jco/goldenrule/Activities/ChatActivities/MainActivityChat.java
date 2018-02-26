@@ -15,7 +15,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 
-import jco.goldenrule.Activities.SettingsActivity;
 import jco.goldenrule.Activities.LoginRegistrationActivities.StartActivity;
 import jco.goldenrule.Adapters.SectionsPagerAdapter;
 import jco.goldenrule.R;

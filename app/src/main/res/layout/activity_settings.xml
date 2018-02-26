@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context="jco.goldenrule.Activities.SettingsActivity">
+    tools:context="jco.goldenrule.Activities.ChatActivities.SettingsActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/settings_image"
