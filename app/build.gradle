@@ -1,16 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '26.0.2'
+
+
+    compileSdkVersion 27
+    buildToolsVersion '27.0.2'
+
     defaultConfig {
         applicationId "com.jco.android.firebase.chat"
-        minSdkVersion 23
-        targetSdkVersion 25
+        minSdkVersion 16
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,7 +33,6 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'org.litepal.android:core:1.6.0'
-    compile 'com.firebase:geofire-android:2.2.0'
     compile 'com.daimajia.androidanimations:library:2.2@aar'
     compile 'com.wang.avi:library:2.1.3'
 
@@ -38,37 +42,32 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
+
+    compile 'com.android.support:appcompat-v7:27.1.0'
+    compile 'com.android.support:design:27.1.0'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.google.firebase:firebase-auth:10.2.0'
 
-    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:support-v4:27.1.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'com.google.firebase:firebase-database:10.2.0'
     compile 'com.theartofdev.edmodo:android-image-cropper:2.4.+'
-    compile 'com.google.firebase:firebase-storage:10.2.0'
-    compile 'com.firebaseui:firebase-ui-database:1.2.0'
     compile 'id.zelory:compressor:2.0.0'
     compile 'me.leolin:ShortcutBadger:1.1.21@aar'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.squareup.okhttp:okhttp:2.5.0'
-    compile 'com.google.firebase:firebase-messaging:10.2.0'
 
 
-
-    //Firebase auth from demo
-    implementation "com.google.firebase:firebase-core:10.2.0"
-    implementation "com.android.support:design:25.3.1"
+    implementation "com.android.support:design:27.1.0"
     implementation 'com.android.support:multidex:1.0.2'
 
 
 
     //Firebase auth
-    implementation "com.android.support:design:25.3.1"
-    implementation "com.android.support:customtabs:25.3.1"
     implementation 'com.android.support.constraint:constraint-layout:1.1.0-beta3'
+
+
+    compile 'com.google.firebase:firebase-messaging:11.8.0'
+    compile 'com.firebase:firebase-jobdispatcher:0.8.5'
 
 
 
@@ -79,12 +78,10 @@ dependencies {
 */
 
     compile 'com.facebook.android:facebook-login:4.28.0'
-    api "com.google.firebase:firebase-auth:10.2.0"
-    api "com.google.android.gms:play-services-auth:10.2.0"
 
     // Needed to override Facebook
-    implementation "com.android.support:cardview-v7:25.3.1"
-    implementation "com.android.support:customtabs:25.3.1"
+    implementation "com.android.support:cardview-v7:27.1.0"
+    implementation "com.android.support:customtabs:27.1.0"
     compile("com.twitter.sdk.android:twitter-core:3.1.1@aar") { transitive = true }
 
 

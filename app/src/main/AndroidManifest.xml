@@ -46,10 +46,6 @@
             </intent-filter>
         </service>
 
-        <activity android:name="jco.goldenrule.Activities.ChatActivities.MainActivityChat"
-            android:screenOrientation="portrait">
-
-        </activity>
         <activity android:name="jco.goldenrule.Activities.InfoActivity"
             android:screenOrientation="portrait">
 

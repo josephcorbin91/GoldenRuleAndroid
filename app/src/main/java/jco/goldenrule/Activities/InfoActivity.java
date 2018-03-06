@@ -10,21 +10,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.facebook.CallbackManager;
-import com.facebook.login.widget.LoginButton;
-import com.google.firebase.auth.FirebaseAuth;
 
-import butterknife.BindView;
-import jco.goldenrule.Activities.ChatActivities.MainActivityChat;
 import jco.goldenrule.R;
 
 
@@ -60,7 +52,6 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
 
 
-        System.out.println("Current user in home activity"+ FirebaseAuth.getInstance().getCurrentUser());
 
         setStatusBarTranslucent(true);
         mediaControls = new MediaController(InfoActivity.this);

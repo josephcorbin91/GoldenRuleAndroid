@@ -1,20 +1,22 @@
 package jco.goldenrule.Activities.LoginRegistrationActivities;
 
 import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ServerValue;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.Calendar;
@@ -65,12 +67,42 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
+    private void setupMessageReceival(){
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create channel to show notifications.
+            String channelId  = "channel Id";
+            String channelName = "chanell name";
+            NotificationManager notificationManager =
+                    getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(new NotificationChannel(channelId,
+                    channelName, NotificationManager.IMPORTANCE_LOW));
+        }
+
+        // If a notification message is tapped, any data accompanying the notification
+        // message is available in the intent extras. In this sample the launcher
+        // intent is fired when the notification is tapped, so any accompanying data would
+        // be handled here. If you want a different intent fired, set the click_action
+        // field of the notification message to the desired intent. The launcher intent
+        // is used when no click_action is specified.
+        //
+        // Handle possible data accompanying notification message.
+        // [START handle_data_extras]
+        if (getIntent().getExtras() != null) {
+            for (String key : getIntent().getExtras().keySet()) {
+                Object value = getIntent().getExtras().get(key);
+                Log.d("TAAG", "Key: " + key + " Value: " + value);
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         setupAlarm();
+        setupMessageReceival();
+
         loadingSpinner =(AVLoadingIndicatorView)findViewById(R.id.loadingSpinner);
         loadingSpinner.smoothToShow();
 
@@ -86,20 +118,21 @@ public class SplashActivity extends AppCompatActivity {
         mContext = this;
         setStatusBarTranslucent(true);
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
 
+            }
+        },Constant.AppConstant.SPLASH_TIME_OUT);
+
+        /*
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
 
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-                }
-            },Constant.AppConstant.SPLASH_TIME_OUT);
            }
-
+*/
 
 
     }

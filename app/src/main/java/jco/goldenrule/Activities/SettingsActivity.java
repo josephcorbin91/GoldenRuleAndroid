@@ -1,21 +1,14 @@
 package jco.goldenrule.Activities;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 
-import jco.goldenrule.Activities.ChatActivities.MainActivityChat;
 import jco.goldenrule.R;
 
 
@@ -42,7 +35,10 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings_page);
 
 
-        System.out.println("Current user in home activity"+ FirebaseAuth.getInstance().getCurrentUser());
+        /*TODO
+        Organization name that would include th users organization id.
+         */
+
 
 
         this.mContext=getApplicationContext();

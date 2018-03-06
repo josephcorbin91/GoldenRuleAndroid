@@ -1,9 +1,12 @@
 package jco.goldenrule.Activities;
 
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -14,10 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-import com.google.firebase.auth.FirebaseAuth;
 
-import jco.goldenrule.Activities.ChatActivities.ChatActivity;
-import jco.goldenrule.Activities.ChatActivities.MainActivityChat;
 import jco.goldenrule.R;
 
 
@@ -47,7 +47,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
 
-        System.out.println("Current user in home activity"+ FirebaseAuth.getInstance().getCurrentUser());
 
 
         this.mSettingButton = (ImageButton)findViewById(R.id.settingButton);
@@ -81,10 +80,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-       // initializeUIComponents();
-
-        //setupAlarm();
-
+       sendNotification();
     }
 
     @Override
@@ -93,42 +89,41 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
-    private void initializeUIComponents(){
 
+    public void sendNotification() {
+
+
+        /*TODO
+            Remove reminder from globe icon
+         */
+        // prepare intent which is triggered if the
+// notification is selected
+
+        Intent intent = new Intent(this, HomeActivity.class);
+// use System.currentTimeMillis() to have a unique ID for the pending intent
+        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+
+// build notification
+// the addAction re-use the same intent to keep the example short
+        Notification n  = new Notification.Builder(this)
+                .setContentTitle("Global Peace Minute")
+                .setStyle(new Notification.BigTextStyle().setBigContentTitle("Global Peace Minute").bigText("Teach, publicize, and remember to follow the Golden Rule. Treat others as you would like to be treated"))
+
+                .setSmallIcon(R.drawable.launcher_icon)
+                .setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                        R.drawable.launcher_icon)).build();
         /*
-        mSettingButton = (FloatingActionButton)findViewById(R.id.settingsButton);
-        mSettingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-            }
-        });
-        mMessagingButton = (FloatingActionButton)findViewById(R.id.messageButton);
-        mMessagingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //startActivity(new Intent(getApplicationContext(), MessagingActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-            }
-        });
-
-        mLocationButton = (FloatingActionButton)findViewById(R.id.locatorButton);
-        mLocationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), LocationActivity.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-
-            }
-        });
-
+                .setContentIntent(pIntent)
+                .setAutoCancel(true)
+                .addAction(R.drawable.online_icon, "Call", pIntent)
+                .addAction(R.drawable.online_icon, "More", pIntent)
+                .addAction(R.drawable.online_icon, "And more", pIntent).build();
 */
 
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-
+        notificationManager.notify(0, n);
     }
 
 
